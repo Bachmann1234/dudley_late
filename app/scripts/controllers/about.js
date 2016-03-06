@@ -15,12 +15,14 @@ angular.module('dudleyApp')
     $http.get(api + "routes?" + api_key + "&format=json")
     .then(function(response) {
     	var routes = response.data.mode;
-    	var mode;
-
-	    for (mode of routes) {
-    		var route;
-    		for (route of mode.route){
-    			$scope.route_array.push({mode: mode.mode_name, route_id : route.route_id, route_name : route.route_name});
+    	
+        //Iterate over routes array to get modes of transport then iterate over the modes to get routes
+        var i;
+	    for (i = 0; i < routes.length; i++) {
+    		var j;
+            var mode = routes[i]
+    		for (j = 0; j < mode.route.length; j++){
+    			$scope.route_array.push({mode: mode.mode_name, route_id : mode.route[j].route_id, route_name : mode.route[j].route_name});
     		}
     	}
     })
@@ -30,15 +32,7 @@ angular.module('dudleyApp')
     $scope.form = {};
 
     $scope.submit = function() {
-    	console.log($scope.form);
-    	// $http
-    	// .post("https://google.com", $scope.form)
-     //    .success(function (data, status, headers, config) {
-     //      console.log("succes");
-     //    })
-     //    .error(function (data, status, headers, config) {
-     //      console.log("error");
-     //    })     
+    	console.log($scope.form); 
+    };
 
-    }
   });

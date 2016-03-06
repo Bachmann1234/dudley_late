@@ -10,7 +10,7 @@
 angular.module('dudleyApp')
   .controller('MainCtrl', function ($scope, $http) {
 
-  	//Check if trnasportation should arrive on time right before school starts
+  	//Check if transportation should arrive on time right before school starts
   	function expected_before_cutoff(expected_time) {
   		var school_start = new Date();
   		//School start is set to 11:19:00 pm today
@@ -19,17 +19,11 @@ angular.module('dudleyApp')
     	var pred_dept = expected_time.pre_dt;
 		var sch_date = new Date(sch_dept*1000);
 		var pred_date = new Date(pred_dept*1000);
-		// console.log(school_start, sch_date, pred_date);
 		//If the train was scheduled to get to the station before school starts, but is late you now have the time from when the train arrives
 		//- school start time to get to school
     	if(sch_dept*1000 <= school_start.getTime() && pred_dept*1000 > school_start.getTime()) {
     		return how_late(expected_time);
-    		// return true;
     	}
-    	// else {
-    	// 	return false;
-    	// }
-    	// return cut_off.getTime() >= expected_time.getTime();
   	}
 
   	function how_late(stop) {
@@ -79,26 +73,8 @@ angular.module('dudleyApp')
     	if($scope.grace_times.length != 0){
     		var shortest_grace = $scope.grace_times[0];
 	    	var longest_grace = $scope.grace_times.pop()
-	    	$scope.grace = `${shortest_grace[0]} minutes ${shortest_grace[1]} seconds - ${longest_grace[0]}  minutes ${longest_grace[1]} seconds`;
+	    	$scope.grace = shortest_grace[0] + " minutues " + shortest_grace[1] + " seconds - " + longest_grace[0] + " minutes "  + longest_grace[1] + " seconds";
     	}
     	
-    	//Get outbound buses
-    	// var trips = bus_schedule.direction[0].trip;
-    	// $scope.available_buses = [];
-    	// var i;
-    	// //Iterate over each trips
-    	// for(i=0; i < trips.length; i++){
-    	// 	//parse date to EST and separate times at the 5th stop
-    	// 	var date = moment.utc(parseInt(trips[i].stop[5].sch_dep_dt)*1000).local().format("HH:mm");
-    	// 	var hour = date.slice(0,2);
-    	// 	var minutes = date.slice(3);
-    	// 	//select buses that get to a location before 5 pm
-    	// 	if(parseInt(hour) < 17){
-    	// 		$scope.available_buses.push(trips[i]);
-    	// 	}
-    		
-
-    	// }
-    	// 	console.log($scope.available_buses);
-    })
+    });
   });
