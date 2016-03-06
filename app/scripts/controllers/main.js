@@ -13,13 +13,13 @@ angular.module('dudleyApp')
   	//Check if trnasportation should arrive on time right before school starts
   	function expected_before_cutoff(expected_time) {
   		var school_start = new Date();
-  		//School start is set to 8:30:00 pm today
+  		//School start is set to 11:19:00 pm today
     	school_start.setHours(11,19,0);
     	var sch_dept = expected_time.sch_dep_dt;
     	var pred_dept = expected_time.pre_dt;
 		var sch_date = new Date(sch_dept*1000);
 		var pred_date = new Date(pred_dept*1000);
-		console.log(school_start, sch_date, pred_date);
+		// console.log(school_start, sch_date, pred_date);
 		//If the train was scheduled to get to the station before school starts, but is late you now have the time from when the train arrives
 		//- school start time to get to school
     	if(sch_dept*1000 <= school_start.getTime() && pred_dept*1000 > school_start.getTime()) {

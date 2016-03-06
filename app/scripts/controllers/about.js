@@ -17,16 +17,6 @@ angular.module('dudleyApp')
     	var routes = response.data.mode;
     	var mode;
 
-
-
-
-
-
-
-
-
-
-
 	    for (mode of routes) {
     		var route;
     		for (route of mode.route){
@@ -37,12 +27,18 @@ angular.module('dudleyApp')
     $scope.modes = ["Subway", "Commuter Rail", "Bus", "Boat"];
     $scope.directions = ["Inbound", "Outbound"];
     
-    // $scope.form = {};
+    $scope.form = {};
 
-    // $scope.submit = function() {
-    // 	console.log($scope.form);
-    // 	$http
-    // 	.post("https://myserver.com", )
+    $scope.submit = function() {
+    	console.log($scope.form);
+    	// $http
+    	// .post("https://google.com", $scope.form)
+     //    .success(function (data, status, headers, config) {
+     //      console.log("succes");
+     //    })
+     //    .error(function (data, status, headers, config) {
+     //      console.log("error");
+     //    })     
 
-    // }
+    }
   });
